@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLSchema, buildSchema } from "graphql";
+import { GraphQLObjectType, GraphQLSchema, buildSchema, GraphQLInputObjectType } from "graphql";
 
 const QUERY = buildSchema(`
     type Query {
@@ -15,3 +15,15 @@ const MUTATION = buildSchema(`
     }
 `);
 
+const ExchangeInfo = new GraphQLObjectType({
+    name: "exchangeInfo",
+    fields: (src, tgt) => ({
+        src: String,
+        tgt: String,
+        rate: Float
+    })
+})
+
+const InputUpdateExchangeInfo = GraphQLInputObjectType({
+    name: ""
+})
