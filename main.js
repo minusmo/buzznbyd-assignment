@@ -1,36 +1,30 @@
-import { GraphQLObjectType, GraphQLSchema, buildSchema, GraphQLInputObjectType, GraphQLOutputType, GraphQLNonNull, GraphQLString } from "graphql";
+import { GraphQLObjectType, GraphQLSchema, GraphQLInputObjectType, GraphQLOutputType, GraphQLNonNull, GraphQLString } from "graphql";
+import { IResolver } from "./schemas/IResolver";
 
-const SCHEMA = buildSchema(`
-    type ExchangeInfo @key(fields: ["src", "tgt"]) {
-        src: String!
-        tgt: String!
-        rate: Float!
-        date: String!
-    }
+const Resolver = {
+    getExchangeRate({src, tgt}) {
+        try {
+            return getExchangeRateFromMongo(src,tgt);
+        }
+        catch(e) {
+            return null;
+        }
+    },
+    postExchangeRate({info}) {
+        try {
+            return upsertExchangeRateFromMongo(info);
+        }
+        catch(e) {
+            return null;
+        }
+    },
+    deleteExchangeRate({info}) {
+        try {
+            return deleteExchangeRateFromMongo(info);
+        }
+        catch(e) {
+            return null;
+        }
+    },
+}
 
-    input InputDeleteExchangeInfo {
-        src: String!
-        tgt: String!
-        date: String!
-    }
-
-    input InputUpdateExchangeInfo {
-        src: String!
-        tgt: String!
-        rate: Float!
-        date: String
-    }
-
-    type Query {
-        getExchangeRate(src: String!, tgt: String!): ExchangeInfo
-    }
-
-    type Mutation {
-        postExchangeRate(info: InputUpdateExchangeInfo): ExchangeInfo
-        deleteExchangeRate(info: InputDeleteExchangeInfo): ExchangeInfo
-    }
-`);
-
-const InputUpdateExchangeInfo = GraphQLInputObjectType({
-    name: ""
-})
