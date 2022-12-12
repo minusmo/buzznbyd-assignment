@@ -1,4 +1,4 @@
-import { buildSchema } from "graphql";
+import {buildSchema} from 'graphql';
 
 export const IResolver = buildSchema(`
     type ExchangeInfo @key(fields: ["src", "tgt"]) {
