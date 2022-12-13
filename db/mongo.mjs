@@ -19,13 +19,15 @@ class MongoDB {
     return this.mongo[query];
   }
 
-  upsert(query ) {
-    this.mongo;
-    return this.mongo[query];
+  upsert(query, upsertInfo) {
+    // const {rate, date} = upsertInfo;
+    return Object.assign(this.mongo[query], upsertInfo);
   }
 
   delete(query) {
-
+    const result = this.mongo[query];
+    delete this.mongo[query];
+    return result;
   }
 }
 
