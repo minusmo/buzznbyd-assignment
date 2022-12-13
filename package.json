@@ -442,5 +442,9 @@
   "bugs": {
     "url": "https://github.com/minusmo/buzznbyd-assignment/issues"
   },
-  "homepage": "https://github.com/minusmo/buzznbyd-assignment#readme"
+  "homepage": "https://github.com/minusmo/buzznbyd-assignment#readme",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-google": "^0.14.0"
+  }
 }
