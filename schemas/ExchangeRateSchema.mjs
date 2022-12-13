@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
 import {buildSchema} from 'graphql';
 
-export const IResolver = buildSchema(`
-    type ExchangeInfo @key(fields: ["src", "tgt"]) {
+export const ExchangeRateSchema = buildSchema(`
+    directive @key(fields: String!) on OBJECT
+
+    type ExchangeInfo @key(fields: "src, tgt") {
         src: String!
         tgt: String!
         rate: Float!

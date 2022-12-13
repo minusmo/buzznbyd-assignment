@@ -1,5 +1,5 @@
 import {graphql} from 'graphql';
-import {IResolver} from '../schemas/IResolver.mjs';
+import {ExchangeRateSchema} from '../schemas/ExchangeRateSchema.mjs';
 import {Resolver} from '../resolvers/resolver.mjs';
 
 /* eslint-disable require-jsdoc */
@@ -9,7 +9,7 @@ function testSuite() {
 
 function getTest() {
   graphql(
-      IResolver,
+      ExchangeRateSchema,
       `{ 
         getExchangeRate (src: \"krw\", tgt: \"usd\") { 
           src 
