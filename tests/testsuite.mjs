@@ -7,6 +7,7 @@ import {Resolver} from '../resolvers/resolver.mjs';
 function testSuite() {
   getTest();
   upsertTest();
+  deleteTest();
 };
 
 function getTest() {
@@ -30,6 +31,22 @@ function upsertTest() {
       ExchangeRateSchema,
       `mutation { 
         postExchangeRate (info: { src: \"usd\", tgt: \"krw\", rate: 1342.11, date:\"2022-11-28\" }) { 
+          src 
+          tgt 
+          rate 
+          date 
+        } 
+      }`,
+      Resolver,
+  )
+      .then((json) => console.log(json));
+}
+
+function deleteTest() {
+  graphql(
+      ExchangeRateSchema,
+      `mutation { 
+        deleteExchangeRate (info: { src: \"krw\", tgt: \"krw\", date:\"2022-11-28\" }) { 
           src 
           tgt 
           rate 

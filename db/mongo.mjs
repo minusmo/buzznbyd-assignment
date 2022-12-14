@@ -24,7 +24,7 @@ class MongoDB {
     return Object.assign(this.mongo[query], upsertInfo);
   }
 
-  delete(query) {
+  delete(query, deleteInfo) {
     const result = this.mongo[query];
     delete this.mongo[query];
     return result;
