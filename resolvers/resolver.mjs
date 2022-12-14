@@ -15,14 +15,14 @@ export const Resolver = {
       return null;
     }
   },
-  postExchangeRate(info) {
+  postExchangeRate({info}) {
     try {
       return upsertExchangeRateFromDB(info, db);
     } catch (e) {
       return null;
     }
   },
-  deleteExchangeRate(info) {
+  deleteExchangeRate({info}) {
     try {
       return deleteExchangeRateFromDB(info, db);
     } catch (e) {
