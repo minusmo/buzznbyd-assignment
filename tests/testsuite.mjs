@@ -13,7 +13,7 @@ function testSuite() {
 function getTest() {
   graphql(
       ExchangeRateSchema,
-      `{ 
+      `query { 
         getExchangeRate (src: \"krw\", tgt: \"usd\") { 
           src 
           tgt 

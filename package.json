@@ -2,7 +2,7 @@
   "name": "exchange-rate-api",
   "version": "1.0.0",
   "description": "api server app for exchange rate CRUD",
-  "main": "main.js",
+  "main": "app.js",
   "directories": {
     "test": "test"
   },
@@ -425,7 +425,8 @@
     "zwitch": "^1.0.5"
   },
   "scripts": {
-    "test": "node ./tests/testsuite.mjs"
+    "test": "node ./tests/testsuite.mjs",
+    "server": "node app.mjs"
   },
   "repository": {
     "type": "git",
