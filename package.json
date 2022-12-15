@@ -253,6 +253,7 @@
     "minimist": "^1.2.5",
     "mitt": "^1.2.0",
     "mkdirp": "^0.5.5",
+    "mongodb": "^4.12.1",
     "ms": "^2.0.0",
     "mute-stream": "^0.0.8",
     "negotiator": "^0.6.2",
