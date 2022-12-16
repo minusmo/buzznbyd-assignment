@@ -1,30 +1,27 @@
-import MongoDB from '../db/mongo.mjs';
 import {
   getExchangeRateFromDB,
   upsertExchangeRateFromDB,
   deleteExchangeRateFromDB,
 } from './utils.mjs';
 
-const db = new MongoDB();
-
 export const Resolver = {
-  getExchangeRate({src, tgt}) {
+  async getExchangeRate({src, tgt}) {
     try {
-      return getExchangeRateFromDB(src, tgt, db);
+      return await getExchangeRateFromDB({src, tgt});
     } catch (e) {
       return null;
     }
   },
-  postExchangeRate({info}) {
+  async postExchangeRate({info}) {
     try {
-      return upsertExchangeRateFromDB(info, db);
+      return await upsertExchangeRateFromDB(info);
     } catch (e) {
       return null;
     }
   },
-  deleteExchangeRate({info}) {
+  async deleteExchangeRate({info}) {
     try {
-      return deleteExchangeRateFromDB(info, db);
+      return await deleteExchangeRateFromDB(info);
     } catch (e) {
       return null;
     }
