@@ -6,17 +6,19 @@
 - mongodb node.js driver: v4.12
 
 ## 설정 방법
-go to directory you want  
-run command as follows in terminal  
+go to directory you want.  
+run following command in terminal.  
 ```
 git clone https://github.com/minusmo/buzznbyd-assignment.git
-```  
+```
+change directory to the cloned directory.  
+then run following command in terminal.  
 ```
 npm install
 ```
 
 ## 실행 방법
-run command as follows in terminal  
+run following command in terminal  
 ```
 npm run server
 ```
