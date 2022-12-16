@@ -9,21 +9,21 @@ export const Resolver = {
     try {
       return await getExchangeRateFromDB({src, tgt});
     } catch (e) {
-      return null;
+      return {};
     }
   },
   async postExchangeRate({info}) {
     try {
       return await upsertExchangeRateFromDB(info);
     } catch (e) {
-      return null;
+      return {};
     }
   },
   async deleteExchangeRate({info}) {
     try {
       return await deleteExchangeRateFromDB(info);
     } catch (e) {
-      return null;
+      return {};
     }
   },
 };
