@@ -28,6 +28,9 @@ npm run server
 2022-12-17-03-17에 업데이트  
 모두 정상 작동합니다.
 
+제출 당시 상태를 참조하시려면 다음의 커밋을 참조하세요.  
+bc435a8e2444002aafbfaaa904ecbe65a2e679d3
+
 mongodb atlas 관련 credential은 원래 업로드하면 안되지만
 일단 업로드합니다.
 
