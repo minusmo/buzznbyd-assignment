@@ -1,6 +1,6 @@
 {
   "name": "exchange-rate-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "api server app for exchange rate CRUD",
   "main": "app.js",
   "directories": {

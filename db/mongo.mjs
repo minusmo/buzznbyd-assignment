@@ -12,40 +12,50 @@ const client = new MongoClient(
     });
 
 class MongoDB {
-  static mongo = client
+  static exchangeRates = client
       .db('buzznbyd')
       .collection('ExchangeRates');
 
   static async get(query) {
-    const result = await MongoDB.mongo.find(query).sort({'date': -1}).limit(1).toArray()[0];
-    const exchangeRate = {...result};
+    const result = await MongoDB.exchangeRates.find(query).toArray();
+    const exchangeRate = JSON.parse(JSON.stringify(result))[0];
     delete exchangeRate['_id'];
     return exchangeRate;
   }
 
   static async upsert(upsertInfo) {
     const {src, tgt} = upsertInfo;
+    const now = new Date();
+    const today = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`;
     const upsertDoc = {
       src: upsertInfo.src,
       tgt: upsertInfo.tgt,
       rate: upsertInfo.rate,
-      date: upsertInfo.date ? upsertInfo.date : new Date().toUTCString(),
+      date: upsertInfo.date ? upsertInfo.date : today,
     };
     const options = {upsert: true};
-    const result = await MongoDB.mongo.updateOne({src, tgt}, upsertDoc, options);
-    return result.upsertedCount > 0 ? Object.assign({}, upsertDoc) : {};
+    const result = await MongoDB.exchangeRates.updateOne(
+        {src, tgt},
+        {
+          $set: {
+            rate: upsertDoc.rate,
+            date: upsertDoc.date,
+          },
+        },
+        options);
+    return result.matchedCount > 0 ? upsertDoc : {};
   }
 
   static async delete(deleteInfo) {
-    const {src, tgt} = deleteInfo;
-    const findResult = await MongoDB.mongo.findOne({src, tgt});
-    let deleteResult = 0;
-    if (findResult) {
-      deleteResult = await MongoDB.mongo.deleteOne(deleteInfo);
+    const findResult = await MongoDB.exchangeRates.findOne(deleteInfo);
+    let deleteResult;
+    if (findResult?._id) {
+      deleteResult = await MongoDB.exchangeRates.deleteOne(deleteInfo);
+      const exchangeRate = JSON.parse(JSON.stringify(findResult));
+      delete exchangeRate['_id'];
+      return deleteResult.deletedCount > 0 ? exchangeRate : {};
     }
-    const exchangeRate = {...findResult};
-    delete exchangeRate['_id'];
-    return deleteResult.deletedCount > 0 ? exchangeRate : {};
+    return {};
   }
 }
 
