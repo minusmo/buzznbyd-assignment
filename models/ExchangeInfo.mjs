@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-export class ExchangeInfo {
+export default class ExchangeInfo {
   constructor(src, tgt, {rate, date}) {
     this.src = src;
     this.tgt = tgt;
