@@ -2,7 +2,7 @@
 /* eslint-disable require-jsdoc */
 import {MongoClient, ServerApiVersion} from 'mongodb';
 
-const uri = 'mongodb+srv://superuser:gl5jXokZn5SaIDUO@buzznbyd.7qkfpyf.mongodb.net/?retryWrites=true&w=majority';
+const uri = '';
 const client = new MongoClient(
     uri,
     {
